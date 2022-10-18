@@ -99,7 +99,7 @@ public class CardBalanceTest {
 
     @Test
     public void shouldNotTransferValueToSingleCard() {
-        String cardNumber = String.valueOf(DataHelper.getSecondCard());
+        String cardNumber = String.valueOf(DataHelper.getFirstCard());
         val dashboardPage = new DashboardPage();
         int value = dashboardPage.getCardBalance(0)/2;
         var firstCardBalanceBefore = dashboardPage.getCardBalance(0);
