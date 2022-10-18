@@ -16,6 +16,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.testng:testng:7.1.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testImplementation 'com.codeborne:selenide:5.19.0'
 }
