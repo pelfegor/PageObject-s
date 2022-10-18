@@ -72,7 +72,7 @@ public class CardBalanceTest {
     }
 
     @Test
-    public void notShouldTransferBoundaryValueToFirstCard3() {
+    public void shouldNotTransferBoundaryValueToFirstCard3() {
         String cardNumber = String.valueOf(DataHelper.getSecondCard());
         val dashboardPage = new DashboardPage();
         int value = dashboardPage.getCardBalance(0) + 1;
@@ -83,7 +83,7 @@ public class CardBalanceTest {
     }
 
     @Test
-    public void notShouldTransferZeroValueToFirstCard() {
+    public void shouldNotTransferZeroValueToFirstCard() {
         String cardNumber = String.valueOf(DataHelper.getSecondCard());
         val dashboardPage = new DashboardPage();
         int value = 0;
@@ -98,7 +98,7 @@ public class CardBalanceTest {
     }
 
     @Test
-    public void notShouldTransferValueToSingleCard() {
+    public void shouldNotTransferValueToSingleCard() {
         String cardNumber = String.valueOf(DataHelper.getSecondCard());
         val dashboardPage = new DashboardPage();
         int value = dashboardPage.getCardBalance(0)/2;
@@ -113,7 +113,7 @@ public class CardBalanceTest {
     }
 
     @Test
-    public void notShouldTransferIfEmptyAmountForm() {
+    public void shouldNotTransferIfEmptyAmountForm() {
         String cardNumber = String.valueOf(DataHelper.getSecondCard());
         val dashboardPage = new DashboardPage();
         var firstCardBalanceBefore = dashboardPage.getCardBalance(0);
@@ -127,7 +127,7 @@ public class CardBalanceTest {
     }
 
     @Test
-    public void notShouldTransferIfEmptyCardForm() {
+    public void shouldNotTransferIfEmptyCardForm() {
         val dashboardPage = new DashboardPage();
         int value = dashboardPage.getCardBalance(0)/2;
         var firstCardBalanceBefore = dashboardPage.getCardBalance(0);
