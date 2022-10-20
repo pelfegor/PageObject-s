@@ -1,6 +1,5 @@
 package ru.netology.page;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.Keys;
 
@@ -15,10 +14,14 @@ public class TransferPage {
     private SelenideElement notification = $("[data-test-id=error-notification]");
     private SelenideElement notificationButton = $("[data-test-id=error-notification] button");
 
-    public void importTransferData(int value, String cardNumber) {
+    public void cleanForm(){
         $("[data-test-id='amount'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
-        transferSumField.setValue(Integer.toString(value));
         $("[data-test-id='from'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
+    }
+
+    public void importTransferData(int value, String cardNumber) {
+        cleanForm();
+        transferSumField.setValue(Integer.toString(value));
         transferCardField.setValue(String.valueOf(cardNumber));
         applyButton.click();
     }
@@ -28,26 +31,20 @@ public class TransferPage {
     }
 
     public void importTransferEmptyAmountData(String cardNumber) {
-        $("[data-test-id='amount'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
-        $("[data-test-id='from'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
+        cleanForm();
         transferCardField.setValue(String.valueOf(cardNumber));
         applyButton.click();
     }
 
     public void importTransferEmptyCardData(int value) {
-        $("[data-test-id='amount'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
+        cleanForm();
         transferSumField.setValue(Integer.toString(value));
-        $("[data-test-id='from'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         applyButton.click();
     }
 
-    public DashboardPage checkNotification(Condition status) {
-        notification.should(status);
-        if (status.equals(visible)) {
-            notificationButton.click();
-            notification.should(hidden);
-        }
-        return new DashboardPage();
+    public void checkNotification(){
+        notification.should(visible);
+        notificationButton.click();
+        notification.should(hidden);
     }
-
 }

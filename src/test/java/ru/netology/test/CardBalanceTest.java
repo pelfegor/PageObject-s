@@ -1,6 +1,5 @@
 package ru.netology.test;
 
-import com.codeborne.selenide.Condition;
 import lombok.val;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -79,7 +78,7 @@ public class CardBalanceTest {
         dashboardPage.transferButtonSecondToFirst();
         val transferPage = new TransferPage();
         transferPage.importTransferData(value, cardNumber);
-        transferPage.checkNotification(Condition.visible);
+        transferPage.checkNotification();
     }
 
     @Test
@@ -92,7 +91,7 @@ public class CardBalanceTest {
         dashboardPage.transferButtonSecondToFirst();
         val transferPage = new TransferPage();
         transferPage.importTransferData(value, cardNumber);
-        transferPage.checkNotification(Condition.visible);
+        transferPage.checkNotification();
         Assertions.assertEquals(secondCardBalanceBefore - value, dashboardPage.getCardBalance(1));
         Assertions.assertEquals(firstCardBalanceBefore + value, dashboardPage.getCardBalance(0));
     }
@@ -107,7 +106,7 @@ public class CardBalanceTest {
         dashboardPage.transferButtonSecondToFirst();
         val transferPage = new TransferPage();
         transferPage.importTransferData(value, cardNumber);
-        transferPage.checkNotification(Condition.visible);
+        transferPage.checkNotification();
         Assertions.assertEquals(secondCardBalanceBefore - value, dashboardPage.getCardBalance(1));
         Assertions.assertEquals(firstCardBalanceBefore + value, dashboardPage.getCardBalance(0));
     }
@@ -121,7 +120,7 @@ public class CardBalanceTest {
         dashboardPage.transferButtonSecondToFirst();
         val transferPage = new TransferPage();
         transferPage.importTransferEmptyAmountData(cardNumber);
-        transferPage.checkNotification(Condition.visible);
+        transferPage.checkNotification();
         Assertions.assertEquals(secondCardBalanceBefore, dashboardPage.getCardBalance(1));
         Assertions.assertEquals(firstCardBalanceBefore, dashboardPage.getCardBalance(0));
     }
@@ -135,7 +134,7 @@ public class CardBalanceTest {
         dashboardPage.transferButtonSecondToFirst();
         val transferPage = new TransferPage();
         transferPage.importTransferEmptyCardData(value);
-        transferPage.checkNotification(Condition.visible);
+        transferPage.checkNotification();
         transferPage.dataTransferCancel();
         Assertions.assertEquals(secondCardBalanceBefore, dashboardPage.getCardBalance(1));
         Assertions.assertEquals(firstCardBalanceBefore, dashboardPage.getCardBalance(0));
